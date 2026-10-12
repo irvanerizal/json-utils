@@ -57,7 +57,7 @@ function apply(text, message) {
 }
 
 function failParse(error) {
-  setStatus(`${activeLabel()} error baris ${error.line}:${error.col} — ${error.message}`, "err");
+  setStatus(`${activeLabel()} error at line ${error.line}:${error.col} — ${error.message}`, "err");
 }
 
 function parseActive() {
