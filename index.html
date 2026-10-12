@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JSON Formatter — format, minify, validate, compare & repair JSON online</title>
-  <meta name="description" content="JSON formatter online gratis: format, minify, validasi, repair, dan compare JSON langsung di browser. Data tidak dikirim ke server." />
+  <meta name="description" content="Free online JSON formatter: format, minify, validate, repair and compare JSON right in your browser. No data is sent to any server." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
     <h1>JSON Formatter</h1>
     <span class="badge">100% client-side</span>
-    <button id="btn-theme" class="ghost" title="Toggle tema">Tema</button>
+    <button id="btn-theme" class="ghost" title="Toggle theme">Theme</button>
   </header>
 
   <main>
@@ -20,8 +20,8 @@
       <button id="btn-minify">Minify</button>
       <button id="btn-repair">Repair</button>
       <select id="indent" title="Indentasi">
-        <option value="2" selected>2 spasi</option>
-        <option value="4">4 spasi</option>
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
         <option value="tab">Tab</option>
       </select>
       <span class="spacer"></span>
@@ -42,12 +42,12 @@
 
     <div class="editors">
       <div class="panel">
-        <div class="panel-label">Before (JSON A) — klik untuk memilih target aksi</div>
-        <textarea id="input-a" spellcheck="false" placeholder='JSON A / "before", contoh: {"nama":"Budi"}'></textarea>
+        <div class="panel-label">Before (JSON A) — click a field to target actions</div>
+        <textarea id="input-a" spellcheck="false" placeholder='JSON A / "before", e.g. {"name":"Budi"}'></textarea>
       </div>
       <div class="panel">
-        <div class="panel-label">After (JSON B) — untuk compare</div>
-        <textarea id="input-b" spellcheck="false" placeholder='JSON B / "after", contoh: {"nama":"Andi"}'></textarea>
+        <div class="panel-label">After (JSON B) — used for comparison</div>
+        <textarea id="input-b" spellcheck="false" placeholder='JSON B / "after", e.g. {"name":"Andi"}'></textarea>
       </div>
     </div>
 
@@ -66,16 +66,16 @@
     </section>
 
     <footer class="statusbar">
-      <span id="status">Siap — aksi berlaku untuk field yang aktif (Before/After)</span>
+      <span id="status">Ready — actions apply to the active field (Before/After)</span>
       <span id="stats" class="stats"></span>
     </footer>
   </main>
 
   <dialog id="result-dialog">
     <div class="dialog-head">
-      <h2 id="dialog-title">Hasil</h2>
+      <h2 id="dialog-title">Result</h2>
       <button id="btn-dialog-copy" class="primary">Copy</button>
-      <button id="btn-dialog-close" class="ghost">Tutup</button>
+      <button id="btn-dialog-close" class="ghost">Close</button>
     </div>
     <pre id="dialog-output"></pre>
   </dialog>

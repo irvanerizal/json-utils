@@ -15,7 +15,7 @@ let activeInput = inputA;
   });
   el.addEventListener("input", () => {
     activeInput = el;
-    setStatus("Siap");
+    setStatus("Ready");
     renderStats();
   });
 });
@@ -37,7 +37,7 @@ function setStatus(message, kind) {
 function renderStats() {
   const text = activeInput.value;
   if (!text.trim()) {
-    statsEl.textContent = `${activeLabel()} kosong`;
+    statsEl.textContent = `${activeLabel()} is empty`;
     return;
   }
   const result = analyze(text);
@@ -67,42 +67,42 @@ function parseActive() {
 document.getElementById("btn-format").addEventListener("click", () => {
   const result = parseActive();
   if (!result.ok) return failParse(result.error);
-  apply(JSON.stringify(result.value, null, indentValue()), `${activeLabel()} diformat`);
+  apply(JSON.stringify(result.value, null, indentValue()), `${activeLabel()} formatted`);
 });
 
 document.getElementById("btn-minify").addEventListener("click", () => {
   const result = parseActive();
   if (!result.ok) return failParse(result.error);
-  apply(JSON.stringify(result.value), `${activeLabel()} diminify`);
+  apply(JSON.stringify(result.value), `${activeLabel()} minified`);
 });
 
 document.getElementById("btn-repair").addEventListener("click", () => {
   const result = repair(activeInput.value);
   if (!result.ok) return failParse(result.error);
   const fixed = result.applied.length ? ` (${result.applied.join(", ")})` : "";
-  apply(result.text, `${activeLabel()} direpair${fixed}`);
+  apply(result.text, `${activeLabel()} repaired${fixed}`);
 });
 
 document.getElementById("btn-sort").addEventListener("click", () => {
   const result = parseActive();
   if (!result.ok) return failParse(result.error);
-  apply(JSON.stringify(sortKeys(result.value), null, indentValue()), `${activeLabel()} key diurutkan (A-Z, rekursif)`);
+  apply(JSON.stringify(sortKeys(result.value), null, indentValue()), `${activeLabel()} keys sorted (A-Z, recursive)`);
 });
 
 document.getElementById("btn-escape").addEventListener("click", () => {
-  if (!activeInput.value.trim()) return setStatus(`${activeLabel()} kosong`, "err");
-  apply(escapeString(activeInput.value), `${activeLabel()} di-escape (JSON string literal)`);
+  if (!activeInput.value.trim()) return setStatus(`${activeLabel()} is empty`, "err");
+  apply(escapeString(activeInput.value), `${activeLabel()} escaped (JSON string literal)`);
 });
 
 document.getElementById("btn-unescape").addEventListener("click", () => {
   const result = unescapeString(activeInput.value);
   if (!result.ok) return setStatus(`${activeLabel()} — ${result.message}`, "err");
-  apply(result.text, `${activeLabel()} di-unescape`);
+  apply(result.text, `${activeLabel()} unescaped`);
 });
 
 document.getElementById("btn-copy").addEventListener("click", async () => {
   await navigator.clipboard.writeText(activeInput.value);
-  setStatus(`${activeLabel()} disalin ke clipboard`, "ok");
+  setStatus(`${activeLabel()} copied to clipboard`, "ok");
 });
 
 document.getElementById("btn-download").addEventListener("click", () => {
@@ -112,12 +112,12 @@ document.getElementById("btn-download").addEventListener("click", () => {
   a.download = activeInput === inputA ? "before.json" : "after.json";
   a.click();
   URL.revokeObjectURL(a.href);
-  setStatus(`${activeLabel()} diunduh`, "ok");
+  setStatus(`${activeLabel()} downloaded`, "ok");
 });
 
 document.getElementById("btn-clear").addEventListener("click", () => {
   activeInput.value = "";
-  setStatus(`${activeLabel()} dibersihkan`);
+  setStatus(`${activeLabel()} cleared`);
   renderStats();
 });
 
@@ -183,11 +183,11 @@ document.getElementById("btn-compare").addEventListener("click", () => {
   compareRight.textContent = "";
 
   if (!a.ok) {
-    compareOutput.textContent = `JSON A tidak valid (baris ${a.error.line}:${a.error.col}) — ${a.error.message}`;
+    compareOutput.textContent = `JSON A is invalid (line ${a.error.line}:${a.error.col}) — ${a.error.message}`;
     return;
   }
   if (!b.ok) {
-    compareOutput.textContent = `JSON B tidak valid (baris ${b.error.line}:${b.error.col}) — ${b.error.message}`;
+    compareOutput.textContent = `JSON B is invalid (line ${b.error.line}:${b.error.col}) — ${b.error.message}`;
     return;
   }
 
@@ -196,7 +196,7 @@ document.getElementById("btn-compare").addEventListener("click", () => {
   compareLeft.innerHTML = renderPanel(sides.left);
   compareRight.innerHTML = renderPanel(sides.right);
   compareOutput.textContent = renderDiff(entries);
-  setStatus(`Compare selesai — ${entries.length} perbedaan`, entries.length ? undefined : "ok");
+  setStatus(`Compare done — ${entries.length} differences`, entries.length ? undefined : "ok");
 });
 
 document.getElementById("btn-theme").addEventListener("click", () => {

@@ -27,7 +27,7 @@ function parseError(message, text, originalText) {
 export function analyze(text) {
   const trimmed = text.trim();
   if (!trimmed) {
-    return { ok: false, error: { message: "Input kosong", line: 1, col: 1, position: 0 } };
+    return { ok: false, error: { message: "Input is empty", line: 1, col: 1, position: 0 } };
   }
   try {
     return { ok: true, value: JSON.parse(trimmed) };
@@ -251,7 +251,7 @@ function csvCell(value) {
 
 export function toCSV(value) {
   if (!Array.isArray(value) || value.length === 0) {
-    return { ok: false, message: "CSV butuh JSON berupa array of objects" };
+    return { ok: false, message: "CSV requires a JSON array of objects" };
   }
   const rows = value.map((item) => flattenRow(item));
   const headers = [...new Set(rows.flatMap((row) => Object.keys(row)))];
@@ -303,9 +303,9 @@ export function unescapeString(text) {
     const value = JSON.parse(trimmed);
     if (typeof value === "string") return { ok: true, text: value };
   } catch {
-    return { ok: false, message: "Input bukan string JSON yang valid" };
+    return { ok: false, message: "Input is not a valid JSON string" };
   }
-  return { ok: false, message: "Input bukan string JSON yang valid" };
+  return { ok: false, message: "Input is not a valid JSON string" };
 }
 
 function typeOf(value) {
@@ -375,7 +375,7 @@ export function diffJson(a, b, path = "$", out = []) {
 }
 
 export function renderDiff(entries) {
-  if (entries.length === 0) return "JSON identik — tidak ada perbedaan.";
+  if (entries.length === 0) return "JSONs are identical — no differences.";
 
   const lines = entries.map((e) => {
     if (e.kind === "added") return `+ ${e.path}: ${JSON.stringify(e.b)}`;
@@ -383,7 +383,7 @@ export function renderDiff(entries) {
     return `~ ${e.path}: ${JSON.stringify(e.a)} → ${JSON.stringify(e.b)}`;
   });
 
-  return `${entries.length} perbedaan:\n\n${lines.join("\n")}`;
+  return `${entries.length} differences:\n\n${lines.join("\n")}`;
 }
 
 function serializeLines(value, indent) {

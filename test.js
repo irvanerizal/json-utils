@@ -90,7 +90,7 @@ assert.ok(deepEqual({ a: 1, b: 2 }, { b: 2, a: 1 }));
 
 const identical = diffJson({ a: 1 }, { a: 1 });
 assert.strictEqual(identical.length, 0);
-assert.ok(renderDiff(identical).includes("identik"));
+assert.ok(renderDiff(identical).includes("identical"));
 
 const orderOnly = diffJson({ a: 1, b: 2 }, { b: 2, a: 1 });
 assert.strictEqual(orderOnly.length, 0);
@@ -111,7 +111,7 @@ const rendered = renderDiff(diff);
 assert.ok(rendered.includes("~ $.nama"));
 assert.ok(rendered.includes("+ $.tambah"));
 assert.ok(rendered.includes("- $.hapus"));
-assert.ok(rendered.includes("perbedaan"));
+assert.ok(rendered.includes("differences"));
 
 const arrDiff = diffJson([1, 2], [1, 2, 3]);
 assert.strictEqual(arrDiff.length, 1);
