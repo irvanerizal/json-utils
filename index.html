@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,8 +9,10 @@
 </head>
 <body>
   <header class="topbar">
-    <h1>JSON Formatter</h1>
-    <span class="badge">100% client-side</span>
+    <div class="brand">
+      <h1>JSON Formatter</h1>
+      <span class="badge">100% client-side</span>
+    </div>
     <button id="btn-theme" class="ghost" title="Toggle theme">Theme</button>
   </header>
 
@@ -19,12 +21,12 @@
       <button id="btn-format" class="primary">Format</button>
       <button id="btn-minify">Minify</button>
       <button id="btn-repair">Repair</button>
-      <select id="indent" title="Indentasi">
+      <select id="indent" title="Indentation">
         <option value="2" selected>2 spaces</option>
         <option value="4">4 spaces</option>
         <option value="tab">Tab</option>
       </select>
-      <span class="spacer"></span>
+      <span class="sep"></span>
       <button id="btn-copy">Copy</button>
       <button id="btn-download">Download</button>
       <button id="btn-clear" class="ghost">Clear</button>
@@ -37,21 +39,29 @@
       <button id="btn-schema">JSON Schema</button>
       <button id="btn-escape">Escape</button>
       <button id="btn-unescape">Unescape</button>
-      <button id="btn-compare" class="accent">Compare</button>
     </div>
 
     <div class="editors">
-      <div class="panel">
-        <div class="panel-label">Before (JSON A) — click a field to target actions</div>
+      <div class="panel active" id="panel-a">
+        <div class="panel-label"><span class="dot"></span>Before</div>
         <textarea id="input-a" spellcheck="false" placeholder='JSON A / "before", e.g. {"name":"Budi"}'></textarea>
       </div>
-      <div class="panel">
-        <div class="panel-label">After (JSON B) — used for comparison</div>
+
+      <div class="center-actions">
+        <button id="btn-copy-ab" title="Copy Before to After">→</button>
+        <button id="btn-copy-ba" title="Copy After to Before">←</button>
+        <button id="btn-swap" title="Swap Before and After">⇄</button>
+        <button id="btn-compare" class="accent" title="Compare Before and After">Compare</button>
+      </div>
+
+      <div class="panel" id="panel-b">
+        <div class="panel-label"><span class="dot"></span>After</div>
         <textarea id="input-b" spellcheck="false" placeholder='JSON B / "after", e.g. {"name":"Andi"}'></textarea>
       </div>
     </div>
 
     <section id="compare-section" class="hidden">
+      <div class="panel-label section-title">Differences</div>
       <div class="compare-panels">
         <div class="panel">
           <div class="panel-label">Before</div>

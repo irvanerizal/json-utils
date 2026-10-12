@@ -2,19 +2,28 @@ import { analyze, format, minify, repair, stats, formatBytes, sortKeys, toTypeSc
 
 const inputA = document.getElementById("input-a");
 const inputB = document.getElementById("input-b");
+const panelA = document.getElementById("panel-a");
+const panelB = document.getElementById("panel-b");
 const status = document.getElementById("status");
 const statsEl = document.getElementById("stats");
 const indentEl = document.getElementById("indent");
 
 let activeInput = inputA;
 
+function updateActiveUI() {
+  panelA.classList.toggle("active", activeInput === inputA);
+  panelB.classList.toggle("active", activeInput === inputB);
+}
+
 [inputA, inputB].forEach((el) => {
   el.addEventListener("focus", () => {
     activeInput = el;
+    updateActiveUI();
     renderStats();
   });
   el.addEventListener("input", () => {
     activeInput = el;
+    updateActiveUI();
     setStatus("Ready");
     renderStats();
   });
@@ -172,6 +181,26 @@ function renderPanel(lines) {
     .map((line) => (line.highlight ? `<mark>${escapeHtml(line.text)}</mark>` : escapeHtml(line.text)))
     .join("\n");
 }
+
+document.getElementById("btn-copy-ab").addEventListener("click", () => {
+  inputB.value = inputA.value;
+  setStatus("Copied Before to After", "ok");
+  renderStats();
+});
+
+document.getElementById("btn-copy-ba").addEventListener("click", () => {
+  inputA.value = inputB.value;
+  setStatus("Copied After to Before", "ok");
+  renderStats();
+});
+
+document.getElementById("btn-swap").addEventListener("click", () => {
+  const tmp = inputA.value;
+  inputA.value = inputB.value;
+  inputB.value = tmp;
+  setStatus("Swapped Before and After", "ok");
+  renderStats();
+});
 
 document.getElementById("btn-compare").addEventListener("click", () => {
   compareSection.classList.remove("hidden");
