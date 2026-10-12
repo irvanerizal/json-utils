@@ -144,6 +144,19 @@ button.ghost:hover {
   color: var(--text);
 }
 
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.icon-sun { display: none; }
+
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+
 .editors {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
