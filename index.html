@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JSON Formatter — format, minify, validate, compare & repair JSON online</title>
+  <meta name="description" content="JSON formatter online gratis: format, minify, validasi, repair, dan compare JSON langsung di browser. Data tidak dikirim ke server." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>JSON Formatter</h1>
+    <span class="badge">100% client-side</span>
+    <button id="btn-theme" class="ghost" title="Toggle tema">Tema</button>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <button id="btn-format" class="primary">Format</button>
+      <button id="btn-minify">Minify</button>
+      <button id="btn-repair">Repair</button>
+      <select id="indent" title="Indentasi">
+        <option value="2" selected>2 spasi</option>
+        <option value="4">4 spasi</option>
+        <option value="tab">Tab</option>
+      </select>
+      <span class="spacer"></span>
+      <button id="btn-copy">Copy</button>
+      <button id="btn-download">Download</button>
+      <button id="btn-clear" class="ghost">Clear</button>
+    </div>
+
+    <div class="toolbar">
+      <button id="btn-sort">Sort keys</button>
+      <button id="btn-ts">TS Types</button>
+      <button id="btn-csv">CSV</button>
+      <button id="btn-schema">JSON Schema</button>
+      <button id="btn-escape">Escape</button>
+      <button id="btn-unescape">Unescape</button>
+      <button id="btn-compare" class="accent">Compare</button>
+    </div>
+
+    <div class="editors">
+      <div class="panel">
+        <div class="panel-label">Before (JSON A) — klik untuk memilih target aksi</div>
+        <textarea id="input-a" spellcheck="false" placeholder='JSON A / "before", contoh: {"nama":"Budi"}'></textarea>
+      </div>
+      <div class="panel">
+        <div class="panel-label">After (JSON B) — untuk compare</div>
+        <textarea id="input-b" spellcheck="false" placeholder='JSON B / "after", contoh: {"nama":"Andi"}'></textarea>
+      </div>
+    </div>
+
+    <section id="compare-section" class="hidden">
+      <div class="compare-panels">
+        <div class="panel">
+          <div class="panel-label">Before</div>
+          <pre id="compare-left"></pre>
+        </div>
+        <div class="panel">
+          <div class="panel-label">After</div>
+          <pre id="compare-right"></pre>
+        </div>
+      </div>
+      <pre id="compare-output"></pre>
+    </section>
+
+    <footer class="statusbar">
+      <span id="status">Siap — aksi berlaku untuk field yang aktif (Before/After)</span>
+      <span id="stats" class="stats"></span>
+    </footer>
+  </main>
+
+  <dialog id="result-dialog">
+    <div class="dialog-head">
+      <h2 id="dialog-title">Hasil</h2>
+      <button id="btn-dialog-copy" class="primary">Copy</button>
+      <button id="btn-dialog-close" class="ghost">Tutup</button>
+    </div>
+    <pre id="dialog-output"></pre>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

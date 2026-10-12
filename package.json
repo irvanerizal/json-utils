@@ -1,0 +1,11 @@
+{
+  "name": "json-formatter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JSON formatter, minifier, validator, and repair — 100% client-side.",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 5173",
+    "test": "node test.js"
+  }
+}
